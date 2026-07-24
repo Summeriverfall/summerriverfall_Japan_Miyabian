@@ -170,6 +170,32 @@ section{position:relative}
 .field textarea{min-height:90px;resize:vertical}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field-hint{display:block;font-size:.82rem;color:var(--muted);letter-spacing:0;text-transform:none;margin:-2px 0 12px;font-weight:300}
+.pot-list{display:flex;flex-direction:column;gap:10px}
+.pot-option{
+  display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;
+  background:var(--bg-2);border:1px solid var(--line);border-radius:10px;
+  padding:14px 16px;cursor:pointer;color:inherit;font:inherit;transition:.2s;
+}
+.pot-option:hover{border-color:rgba(198,162,77,.45)}
+.pot-option.is-selected{border-color:var(--gold);background:rgba(198,162,77,.08)}
+.pot-radio{
+  flex:0 0 auto;width:18px;height:18px;margin-top:3px;border-radius:50%;
+  border:1.5px solid var(--muted);display:grid;place-items:center;
+}
+.pot-option.is-selected .pot-radio{border-color:var(--gold)}
+.pot-option.is-selected .pot-radio::after{
+  content:"";width:9px;height:9px;border-radius:50%;background:var(--gold);
+}
+.pot-body{flex:1;min-width:0}
+.pot-title-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.pot-name{font-family:var(--serif);font-size:1.08rem;color:var(--cream);line-height:1.3}
+.pot-badge{
+  font-size:.68rem;letter-spacing:.04em;font-weight:500;
+  color:#fff;background:var(--terra);border-radius:4px;padding:2px 7px;
+}
+.pot-extra{font-size:.78rem;color:var(--gold-2);font-weight:500;margin-left:auto}
+.pot-desc{margin-top:4px;font-size:.84rem;color:var(--muted);line-height:1.45}
 .book-summary{background:var(--bg-2);border:1px dashed var(--line);border-radius:10px;padding:16px 18px;margin:6px 0 22px;font-size:.9rem;color:var(--cream-2)}
 .book-back{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;letter-spacing:.1em;color:var(--muted);margin-bottom:20px}
 .book-back:hover{color:var(--gold)}

@@ -60,6 +60,11 @@
         <select id="f-course"></select>
       </div>
       <div class="field">
+        <label id="pot-label" data-i18n="pot">Hot pot (shared per table)</label>
+        <span class="field-hint" data-i18n="potHint">Please choose one pot style for the table.</span>
+        <div class="pot-list" id="f-pot" role="radiogroup" aria-labelledby="pot-label"></div>
+      </div>
+      <div class="field">
         <label data-i18n="notes">Notes (seating, allergies, occasion…)</label>
         <textarea id="f-notes"></textarea>
       </div>
@@ -95,27 +100,60 @@
            "神户牛双拼锅自助 ¥14,980"]
     };
 
+    var POTS = {
+      en: [
+        { id:"sukishabu", name:"Suki-shabu", desc:"Half shabu-shabu, half sukiyaki", badge:"Most popular", extra:"" },
+        { id:"shabu", name:"Shabu-shabu", desc:"Light dashi broth, with ponzu and sesame sauce", badge:"", extra:"" },
+        { id:"sukiyaki", name:"Sukiyaki", desc:"Sweet warishita broth, served with raw egg", badge:"", extra:"" },
+        { id:"yakishabu", name:"Yaki-shabu", desc:"Shabu-shabu pot with an iron grill plate", badge:"", extra:"" },
+        { id:"shabu_spicy", name:"Shabu & spicy pot", desc:"Two-color split pot", badge:"", extra:"+¥700 / person" },
+        { id:"suki_spicy", name:"Suki & spicy pot", desc:"Two-color split pot", badge:"2nd most popular", extra:"+¥700 / person" }
+      ],
+      jp: [
+        { id:"sukishabu", name:"すきしゃぶ", desc:"半分しゃぶしゃぶ・半分すき焼き", badge:"一番人気", extra:"" },
+        { id:"shabu", name:"しゃぶしゃぶ", desc:"あっさり出汁。ポン酢・ごまだれで", badge:"", extra:"" },
+        { id:"sukiyaki", name:"すき焼き", desc:"甘い割り下。生卵と一緒に", badge:"", extra:"" },
+        { id:"yakishabu", name:"焼しゃぶ", desc:"しゃぶしゃぶ鍋＋鉄板の組み合わせ", badge:"", extra:"" },
+        { id:"shabu_spicy", name:"しゃぶ＆辛鍋", desc:"二色鍋", badge:"", extra:"+700円／人" },
+        { id:"suki_spicy", name:"すき＆辛鍋", desc:"二色鍋", badge:"第二の人気", extra:"+700円／人" }
+      ],
+      cn: [
+        { id:"sukishabu", name:"寿喜涮（双拼锅）", desc:"一半涮涮锅、一半寿喜烧", badge:"最受欢迎", extra:"" },
+        { id:"shabu", name:"日式涮涮锅", desc:"清淡高汤，搭配橙醋与芝麻酱", badge:"", extra:"" },
+        { id:"sukiyaki", name:"寿喜烧", desc:"甜口寿喜烧汤底，搭配生鸡蛋", badge:"", extra:"" },
+        { id:"yakishabu", name:"烤涮牛肉", desc:"涮锅与铁板组合", badge:"", extra:"" },
+        { id:"shabu_spicy", name:"涮涮锅＆香辣火锅", desc:"鸳鸯双色锅", badge:"", extra:"+700日元／人" },
+        { id:"suki_spicy", name:"寿喜烧＆香辣火锅", desc:"鸳鸯双色锅", badge:"第二受欢迎", extra:"+700日元／人" }
+      ]
+    };
+
     var I18N = {
       en: { back:"Back", eyebrow:"Reservation", title:"Reserve a table",
         intro:"Send us your request via WhatsApp — we'll confirm availability and get back to you.",
         date:"Date", time:"Time", guests:"Guests", guests8:"8+ (please note below)",
-        name:"Name", course:"Course", notes:"Notes (seating, allergies, occasion…)", submit:"Send via WhatsApp",
+        name:"Name", course:"Course",
+        pot:"Hot pot (shared per table)", potHint:"Please choose one pot style for the table.",
+        notes:"Notes (seating, allergies, occasion…)", submit:"Send via WhatsApp",
         foot:"Times are requests and subject to confirmation. Courses run 120 minutes, from 2 guests. Fri & Sat open till 23:00 — for later times please add a note. Same-day reservations: +81 78-271-4129.",
-        sumTitle:"Your request", sDate:"Date", sTime:"Time", sGuests:"Guests", sName:"Name", sCourse:"Course", sNotes:"Notes", none:"—",
+        sumTitle:"Your request", sDate:"Date", sTime:"Time", sGuests:"Guests", sName:"Name", sCourse:"Course", sPot:"Hot pot", sNotes:"Notes", none:"—",
         msgHead:"Reservation request — Miyabian Sannomiya", htmlLang:"en" },
       jp: { back:"戻る", eyebrow:"ご予約", title:"ご予約",
         intro:"WhatsApp で予約リクエストをお送りください。空席を確認のうえご連絡いたします。",
         date:"ご希望日", time:"ご希望時間", guests:"人数", guests8:"8名以上（下記にご記入ください）",
-        name:"お名前", course:"コース", notes:"ご要望（席・アレルギー・記念日など）", submit:"WhatsApp で送信",
+        name:"お名前", course:"コース",
+        pot:"鍋（テーブル共通）", potHint:"お一人様につき1種類ではなく、テーブルで1種類をお選びください。",
+        notes:"ご要望（席・アレルギー・記念日など）", submit:"WhatsApp で送信",
         foot:"時間はリクエストとなり、確定は別途ご連絡いたします。食べ放題は120分制・2名様より。金・土は23:00まで営業（遅い時間はご要望欄へ）。当日のご予約はお電話（078-271-4129）にてお願いします。",
-        sumTitle:"ご予約内容", sDate:"ご希望日", sTime:"ご希望時間", sGuests:"人数", sName:"お名前", sCourse:"コース", sNotes:"ご要望", none:"—",
+        sumTitle:"ご予約内容", sDate:"ご希望日", sTime:"ご希望時間", sGuests:"人数", sName:"お名前", sCourse:"コース", sPot:"鍋", sNotes:"ご要望", none:"—",
         msgHead:"予約リクエスト — 雅庵 三宮店", htmlLang:"ja" },
       cn: { back:"返回", eyebrow:"预约", title:"预约座位",
         intro:"通过 WhatsApp 发送预约请求，我们将确认空位后尽快回复您。",
         date:"日期", time:"时间", guests:"人数", guests8:"8 人以上（请在下方备注）",
-        name:"姓名", course:"套餐", notes:"备注（座位、过敏、纪念日等）", submit:"通过 WhatsApp 发送",
+        name:"姓名", course:"套餐",
+        pot:"锅底（整桌共用）", potHint:"请整桌选择一种锅底（非每人各选）。",
+        notes:"备注（座位、过敏、纪念日等）", submit:"通过 WhatsApp 发送",
         foot:"所填时间为预约请求，最终以本店确认为准。自助放题为120分钟制、2位起。周五六营业至23:00（较晚时段请在备注注明）。当日预约请致电 +81 78-271-4129。",
-        sumTitle:"预约内容", sDate:"日期", sTime:"时间", sGuests:"人数", sName:"姓名", sCourse:"套餐", sNotes:"备注", none:"—",
+        sumTitle:"预约内容", sDate:"日期", sTime:"时间", sGuests:"人数", sName:"姓名", sCourse:"套餐", sPot:"锅底", sNotes:"备注", none:"—",
         msgHead:"预约请求 — 雅庵 三宫店", htmlLang:"zh-CN" }
     };
     var t = I18N[lang];
@@ -134,6 +172,44 @@
       elCourse.appendChild(o);
     });
 
+    var elPot = document.getElementById("f-pot");
+    var selectedPotId = "sukishabu";
+    function potLabel(p) {
+      return p.name + (p.extra ? " (" + p.extra + ")" : "");
+    }
+    function renderPots() {
+      elPot.innerHTML = "";
+      POTS[lang].forEach(function (p) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "pot-option" + (p.id === selectedPotId ? " is-selected" : "");
+        btn.setAttribute("role", "radio");
+        btn.setAttribute("aria-checked", p.id === selectedPotId ? "true" : "false");
+        btn.dataset.id = p.id;
+        var badge = p.badge ? '<span class="pot-badge">' + p.badge + "</span>" : "";
+        var extra = p.extra ? '<span class="pot-extra">' + p.extra + "</span>" : "";
+        btn.innerHTML =
+          '<span class="pot-radio" aria-hidden="true"></span>' +
+          '<span class="pot-body">' +
+            '<span class="pot-title-row"><span class="pot-name">' + p.name + "</span>" + badge + extra + "</span>" +
+            '<span class="pot-desc">' + p.desc + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () {
+          selectedPotId = p.id;
+          renderPots();
+          renderSummary();
+        });
+        elPot.appendChild(btn);
+      });
+    }
+    function getSelectedPot() {
+      for (var i = 0; i < POTS[lang].length; i++) {
+        if (POTS[lang][i].id === selectedPotId) return POTS[lang][i];
+      }
+      return POTS[lang][0];
+    }
+    renderPots();
+
     var elDate = document.getElementById("f-date"),
         elTime = document.getElementById("f-time"),
         elGuests = document.getElementById("f-guests"),
@@ -142,12 +218,14 @@
         summary = document.getElementById("summary");
 
     function renderSummary() {
+      var pot = getSelectedPot();
       var rows = [
         ["sumTitle", "", true],
         ["sDate", elDate.value || t.none],
         ["sTime", elTime.value || t.none],
         ["sGuests", elGuests.value || t.none],
         ["sCourse", elCourse.value || t.none],
+        ["sPot", potLabel(pot)],
         ["sName", elName.value || t.none],
         ["sNotes", elNotes.value || t.none]
       ];
@@ -167,12 +245,14 @@
     renderSummary();
 
     document.getElementById("submit").addEventListener("click", function () {
+      var pot = getSelectedPot();
       var lines = [
         t.msgHead,
         t.sDate + ": " + (elDate.value || t.none),
         t.sTime + ": " + (elTime.value || t.none),
         t.sGuests + ": " + (elGuests.value || t.none),
         t.sCourse + ": " + (elCourse.value || t.none),
+        t.sPot + ": " + potLabel(pot),
         t.sName + ": " + (elName.value || t.none),
         t.sNotes + ": " + (elNotes.value || t.none)
       ];
